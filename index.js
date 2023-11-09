@@ -1,10 +1,13 @@
 const express = require('express')
 const User = require('./src/models/userModel')
 const Book = require('./src/models/libraryModel')
-const app = express()
+
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
-const PORT = 3000
+const PORT = 3000;
+const app = express()
+app.use(express.json());
+
 
 const jwtMiddleware = (req, res, next) => {
     console.log("Router specific middle ware");
