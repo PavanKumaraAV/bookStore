@@ -1,5 +1,6 @@
 const express = require('express')
 const User = require('./src/models/userModel')
+const Book = require('./src/models/libraryModel')
 const app = express()
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
@@ -42,7 +43,7 @@ app.post("/api/auth/login", async (req, res) => {
             id: user._id,
             username: user.username
         };
-        var token = jwt.sign(payload, "superkey@123", { expiresIn: '7d' });
+        var token = jwt.sign(payload, "superkey@123");
         res.cookie('jwToken', token)
     }
 });
@@ -84,7 +85,7 @@ app.post("/api/books", jwtMiddleware, async (req, res) => {
             .then(() => res.status(200).send({ msg: "Book added successfully" }))
             .catch((err) => res.status(400).send({ msg: err }))
     } catch (e) {
-        res.status(400).send({ msg: e })
+        res.status(400).send({ message: e.message })
     }
 });
 

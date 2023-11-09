@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const bookSchema = mongoose.Schema({
-    BookName: {
+    bookName: {
         type: string
     },
     author: {
@@ -18,6 +18,6 @@ const bookSchema = mongoose.Schema({
     }
 })
 
-Book = book.model('Book', bookSchema)
+Book = mongoose.model('Book', bookSchema)
 
 module.exports = Book
